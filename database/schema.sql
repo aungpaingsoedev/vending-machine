@@ -1,0 +1,34 @@
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS products (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 3) UNSIGNED NOT NULL,
+    quantity_available INT UNSIGNED NOT NULL DEFAULT 0,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS transactions (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT UNSIGNED NOT NULL,
+    product_id BIGINT UNSIGNED NOT NULL,
+    quantity INT UNSIGNED NOT NULL,
+    unit_price DECIMAL(10, 3) UNSIGNED NOT NULL,
+    total_price DECIMAL(10, 3) UNSIGNED NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT transactions_user_fk
+        FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT transactions_product_fk
+        FOREIGN KEY (product_id) REFERENCES products(id),
+    INDEX transactions_user_id_index (user_id),
+    INDEX transactions_product_id_index (product_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,0 +1,25 @@
+# Environment variables
+.env
+.env.*
+
+# Keep an example environment file
+!.env.example
+!.env.testing.example
+
+# Composer dependencies
+/vendor/
+
+# PHPUnit cache
+.phpunit.cache/
+.phpunit.result.cache
+
+# Logs
+*.log
+/logs/
+
+# IDE settings
+.idea/
+.vscode/
+
+# macOS
+.DS_Store

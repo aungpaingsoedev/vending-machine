@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="620" viewBox="0 0 1400 620" role="img" aria-labelledby="title desc">
+  <title id="title">Vending Machine Database Diagram</title>
+  <desc id="desc">Users and products have one-to-many relationships with transactions.</desc>
+  <style>
+    .box { stroke-width: 3; rx: 14; }
+    .title { font: 700 28px Arial, sans-serif; }
+    .heading { font: 700 24px Arial, sans-serif; }
+    .field { font: 18px Arial, sans-serif; }
+    .label { font: 700 17px Arial, sans-serif; fill: #334155; }
+  </style>
+  <rect width="1400" height="620" fill="#f8fafc"/>
+  <text x="700" y="48" text-anchor="middle" class="title" fill="#0f172a">Vending Machine Database</text>
+
+  <rect x="55" y="120" width="350" height="365" class="box" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="85" y="165" class="heading" fill="#1e3a8a">USERS</text>
+  <line x1="85" y1="185" x2="375" y2="185" stroke="#93c5fd" stroke-width="2"/>
+  <text x="85" y="225" class="field" fill="#172554">PK  id BIGINT</text>
+  <text x="85" y="263" class="field" fill="#172554">name VARCHAR(255)</text>
+  <text x="85" y="301" class="field" fill="#172554">UK  email VARCHAR(255)</text>
+  <text x="85" y="339" class="field" fill="#172554">password VARCHAR(255)</text>
+  <text x="85" y="377" class="field" fill="#172554">role ENUM(admin, user)</text>
+  <text x="85" y="415" class="field" fill="#172554">created_at TIMESTAMP</text>
+
+  <rect x="525" y="90" width="350" height="425" class="box" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="555" y="135" class="heading" fill="#4c1d95">TRANSACTIONS</text>
+  <line x1="555" y1="155" x2="845" y2="155" stroke="#c4b5fd" stroke-width="2"/>
+  <text x="555" y="195" class="field" fill="#3b0764">PK  id BIGINT</text>
+  <text x="555" y="233" class="field" fill="#3b0764">FK  user_id BIGINT</text>
+  <text x="555" y="271" class="field" fill="#3b0764">FK  product_id BIGINT</text>
+  <text x="555" y="309" class="field" fill="#3b0764">quantity INT</text>
+  <text x="555" y="347" class="field" fill="#3b0764">unit_price DECIMAL(10,3)</text>
+  <text x="555" y="385" class="field" fill="#3b0764">total_price DECIMAL(10,3)</text>
+  <text x="555" y="423" class="field" fill="#3b0764">created_at TIMESTAMP</text>
+
+  <rect x="995" y="120" width="350" height="365" class="box" fill="#d1fae5" stroke="#059669"/>
+  <text x="1025" y="165" class="heading" fill="#065f46">PRODUCTS</text>
+  <line x1="1025" y1="185" x2="1315" y2="185" stroke="#6ee7b7" stroke-width="2"/>
+  <text x="1025" y="225" class="field" fill="#064e3b">PK  id BIGINT</text>
+  <text x="1025" y="263" class="field" fill="#064e3b">name VARCHAR(255)</text>
+  <text x="1025" y="301" class="field" fill="#064e3b">price DECIMAL(10,3)</text>
+  <text x="1025" y="339" class="field" fill="#064e3b">quantity_available INT</text>
+  <text x="1025" y="377" class="field" fill="#064e3b">created_at TIMESTAMP</text>
+  <text x="1025" y="415" class="field" fill="#064e3b">updated_at TIMESTAMP</text>
+
+  <line x1="406" y1="300" x2="525" y2="300" stroke="#475569" stroke-width="3"/>
+  <polygon points="525,300 510,292 510,308" fill="#475569"/>
+  <text x="450" y="270" text-anchor="middle" class="label">1 : N</text>
+
+  <line x1="875" y1="300" x2="995" y2="300" stroke="#475569" stroke-width="3"/>
+  <polygon points="875,300 890,292 890,308" fill="#475569"/>
+  <text x="935" y="270" text-anchor="middle" class="label">N : 1</text>
+</svg>
